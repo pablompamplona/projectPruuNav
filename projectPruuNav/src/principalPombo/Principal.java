@@ -81,8 +81,6 @@ public class Principal {
 					break;
 				}
 				
-				
-				
 				switch (opAdminMenu) {
 					case 1:
 						Usuario user = new Usuario();
@@ -159,6 +157,7 @@ public class Principal {
 						System.out.println("================================================");
 						System.out.println("");
 						System.out.println("Selecione qual Pruu deseja bloquear: ");
+						System.out.println("");
 						for (int i = 0; i < pruusFeed.size(); i++) {
 							if(pruusFeed.get(i).isBloqueado() == false) {
 								System.out.println("ID: " + i + pruusFeed.get(i));
@@ -179,6 +178,7 @@ public class Principal {
 						System.out.println("================================================");
 						System.out.println("");
 						System.out.println("Selecione qual Pruu deseja desbloquear: ");
+						System.out.println("");
 						for (int i = 0; i < pruusFeed.size(); i++) {
 							if (pruusFeed.get(i).isBloqueado()) {
 								System.out.println("ID: " + i + pruusFeed.get(i));
@@ -252,7 +252,7 @@ public class Principal {
 							Usuario userAtual = pruusFeed.get(i).getUsuario();
 							if (userAtual == users.get(selecUserConsult)) {
 								System.out.println(pruusFeed.get(i));
-						}
+							}
 						}
 						break;
 						
