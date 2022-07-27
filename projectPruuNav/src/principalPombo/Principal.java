@@ -21,7 +21,7 @@ public class Principal {
 		ArrayList<Pruu> pruusFeed = new ArrayList();
 		ArrayList<Usuario> users = new ArrayList();
 		
-		Usuario admin = new Administrador("AdminUser","admin@admin","123456789");
+		Administrador admin = new Administrador("AdminUser","admin@admin","123456789");
 		
 		Usuario userJoao = new Usuario("Joazinho", "@joazinho", "123");
 		Pruu pruuJoao1 = new Pruu("oi pessoal", userJoao);
@@ -42,7 +42,7 @@ public class Principal {
 		
 		userJoao.darLike(pruuMaria2);
 		
-		((Administrador) admin).bloquearPruu(pruuJoao1);
+		admin.bloquearPruu(pruuJoao1);
 		
 		do {
 			System.out.println("================================================");
@@ -165,7 +165,7 @@ public class Principal {
 						}
 						System.out.println("Informe o ID do pruu selecionado: ");
 						selecPruuBloq = input.nextInt();
-						pruusFeed.get(selecPruuBloq).setBloqueado(true);
+						admin.bloquearPruu(pruusFeed.get(selecPruuBloq));
 						System.out.println("*************************************************");
 						System.out.println("           PRUU BLOQUEADO COM SUCESSO            ");
 						System.out.println("*************************************************");
@@ -186,7 +186,7 @@ public class Principal {
 						}
 						System.out.println("Informe o ID do pruu selecionado: ");
 						selecPruuDesbloq = input.nextInt();
-						pruusFeed.get(selecPruuDesbloq).setBloqueado(false);
+						admin.desbloquearPruu(pruusFeed.get(selecPruuDesbloq));
 						System.out.println("*************************************************");
 						System.out.println("         PRUU DESBLOQUEADO COM SUCESSO           ");
 						System.out.println("*************************************************");
