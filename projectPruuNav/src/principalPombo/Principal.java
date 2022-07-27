@@ -15,7 +15,7 @@ public class Principal {
 		Scanner input = new Scanner(System.in);
 		
 		int opMainMenu = 0, opAdminMenu = 0, opClientMenu = 0, opConfirmUserRemove = 0;
-		int selecUserEdit = 0, selecUserRemove = 0, selecUserPost = 0, selecUserConsult = 0;
+		int selecUserEdit = 0, selecUserRemove = 0, selecUserPost = 0, selecUserConsult = 0, selecUserCurtindo = 0;
 		int selecPruuCurtido = 0, selecPruuBloq = 0, selecPruuDesbloq = 0;
 		
 		ArrayList<Pruu> pruusFeed = new ArrayList();
@@ -274,11 +274,23 @@ public class Principal {
 						System.out.println("          PRUU SOCIAL NET - CURTIR PRUUS        ");
 						System.out.println("================================================");
 						System.out.println("");
+						System.out.println(" Qual usuario esta pesquisando? ");
+						for (int i = 0; i < users.size(); i++) {
+							System.out.println("ID: " + i + " - Usuario: " + users.get(i).getNomePerfil());
+							System.out.println("");
+							}
+						System.out.println("================================================");
+						System.out.println(" Informe o ID correspondente: ");
+						selecUserCurtindo = input.nextInt();
+						System.out.println("");
 						for (int i = 0; i < pruusFeed.size(); i++) {
-							System.out.println("ID: " + i);
-							System.out.println(pruusFeed.get(i));
-							System.out.println(" ");
-							System.out.println("************************************************");
+							Usuario userAtual = pruusFeed.get(i).getUsuario();
+							if (userAtual != users.get(selecUserCurtindo)) {
+								System.out.println("ID: " + i);
+								System.out.println(pruusFeed.get(i));
+								System.out.println(" ");
+								System.out.println("************************************************");
+							}
 						}
 						System.out.println("Digite o ID referente ao pruu que voce curtiu: ");
 						selecPruuCurtido = input.nextInt();
