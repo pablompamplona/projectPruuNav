@@ -58,15 +58,23 @@ public class Pruu {
 				System.out.println("Digite sua mensagem: ");
 				texto = input.nextLine();
 				validarTexto(texto);
-			} while (!textoValido);
-			
+			} while (textoValido == false);
+			this.dataCriacao = new Date();
+			SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+			String dataFormatada = formatador.format(dataCriacao);
+			this.dataFormatada = dataFormatada;
+			System.out.println("*****      POSTADO COM SUCESSO      *****");
+			Pruu.id++;
+			idPruu = Pruu.id;
 		}
 	}
 	
 	public boolean validarTexto(String texto) {
 		if ((texto.length() > 300) || (texto.trim().length() < 1)) {
 			textoValido = false;
-		} 
+		} else {
+			textoValido = true;
+		}
 		return textoValido;
 	}
 	
