@@ -263,6 +263,12 @@ public class Principal {
 						for (Pruu pAtual : pruusFeed) {
 							if (pAtual.getUsuario() == users.get(selecUserConsult)) {
 								System.out.println(pAtual);
+								System.out.println("     -------    Comentarios    -------     ");
+								System.out.println();
+								for (int i = 0; i < pAtual.getComentarios().size(); i++) {
+									System.out.println(pAtual.getComentarios().get(i));
+									System.out.println();
+									}
 							}
 						}
 						break;
@@ -274,8 +280,13 @@ public class Principal {
 						System.out.println("");
 						for (Pruu pAtual : pruusFeed) {
 							System.out.println(pAtual);
-							System.out.println(" ");
-							System.out.println("************************************************");
+							System.out.println("     -------    Comentarios    -------     ");
+							System.out.println();
+							for (int i = 0; i < pAtual.getComentarios().size(); i++) {
+								System.out.println(pAtual.getComentarios().get(i));
+								System.out.println();
+							}
+							System.out.println("************************************************");	
 						}
 						break;
 						
@@ -358,6 +369,10 @@ public class Principal {
 			}
 			
 		} while (opMainMenu != 0);
-	
+		if (opMainMenu == 0) {
+			System.out.println("================================================");
+			System.out.println("         SISTEMA ENCERRADO - ATE BREVE          ");
+			System.out.println("================================================");
+		}
 	}
 }

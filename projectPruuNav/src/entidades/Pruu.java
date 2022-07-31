@@ -161,15 +161,11 @@ public class Pruu {
 		return "\n" +
 				"ID: " + idPruu + 
 				"\n" +
-				"\nPruuuuuu: " + texto + 
+				"\nPruuuuuu: " + 
+				"\n" + texto + 
 				"\nPostado em " + dataFormatada + 
 				"\n" + qtdLikes + " curtidas" + 
 				"\nPostado por: " + usuario.getNomePerfil() + 
-				"\n" +
-				"\n" +
-				"---- Comentarios -----" + "\n" +
-				"\n" +
-				comentarios + "\n" +
 				"\n";
 			
 		}
