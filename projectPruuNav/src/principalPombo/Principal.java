@@ -1,10 +1,11 @@
 package principalPombo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import entidades.Administrador;
+import entidades.Comentario;
 import entidades.Pruu;
 import entidades.Usuario;
 
@@ -15,11 +16,13 @@ public class Principal {
 		Scanner input = new Scanner(System.in);
 		
 		int opMainMenu = 0, opAdminMenu = 0, opClientMenu = 0, opConfirmUserRemove = 0;
-		int selecUserEdit = 0, selecUserRemove = 0, selecUserPost = 0, selecUserConsult = 0, selecUserCurtindo = 0;
-		int selecPruuCurtido = 0, selecPruuBloq = 0, selecPruuDesbloq = 0;
+		int selecUserEdit = 0, selecUserRemove = 0, selecUserPost = 0, selecUserConsult = 0;
+		int selecUserCurtindo = 0, selecUserComentando = 0;
+		int selecPruuCurtido = 0, selecPruuBloq = 0, selecPruuDesbloq = 0, selecPruuComentar = 0;
 		
 		ArrayList<Pruu> pruusFeed = new ArrayList();
 		ArrayList<Usuario> users = new ArrayList();
+		
 		
 		Administrador admin = new Administrador("AdminUser","admin@admin","123456789");
 		
@@ -212,6 +215,7 @@ public class Principal {
 				System.out.println("  2  -  LISTAR MEUS PRUUS");
 				System.out.println("  3  -  LISTAR TODOS OS PRUUS");
 				System.out.println("  4  -  CURTIR PRUUS");
+				System.out.println("  5  -  COMENTAR PRUUS");
 				System.out.println("  9  -  RETORNAR AO MENU PRINCIPAL");
 				System.out.println("");
 				System.out.println("================================================");
@@ -309,6 +313,46 @@ public class Principal {
 						System.out.println("  ******   PRUU CURTIDO COM SUCESSO   ******   ");
 						break;
 						
+					case 5:
+						System.out.println("================================================");
+						System.out.println("        PRUU SOCIAL NET - COMENTAR PRUUS        ");
+						System.out.println("================================================");
+						System.out.println("");
+						System.out.println(" Qual usuario esta comentando? ");
+						Usuario userAtual;
+						for (int i = 0; i < users.size(); i++) {
+							System.out.println("ID: " + i + " - Usuario: " + users.get(i).getNomePerfil());
+							System.out.println("");
+							}
+						System.out.println("================================================");
+						System.out.println(" Informe o ID correspondente: ");
+						selecUserComentando = input.nextInt();
+						userAtual = users.get(selecUserComentando);
+						System.out.println();
+						System.out.println("===========    Lista de Pruus   ================");
+						System.out.println("");
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getUsuario() != users.get(selecUserComentando)) {
+								System.out.println(pAtual);
+								System.out.println(" ");
+								System.out.println("************************************************");
+							}
+						}
+						System.out.println("Digite o ID referente ao pruu que deseja comentar : ");
+						selecPruuComentar = input.nextInt();
+						input.nextLine();
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getIdPruu() == selecPruuComentar) {
+								System.out.println();
+								System.out.println("*****       INCLUIR COMENTARIO      *****");
+								System.out.println();
+								System.out.println("Digite seu Comentario: ");
+								String texto = input.nextLine();
+								pAtual.incluirComentario(texto, userAtual);	
+								System.out.println("");
+								System.out.println(" ****** COMENTARIO ENVIADO COM SUCESSO ****** ");
+							}
+						}
 				}
 			
 			}

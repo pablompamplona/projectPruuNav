@@ -1,7 +1,9 @@
 package entidades;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Pruu {
@@ -15,6 +17,7 @@ public class Pruu {
 	private boolean bloqueado;
 	private Usuario usuario;
 	private boolean textoValido = true;
+	private ArrayList <Comentario> comentarios = new ArrayList();
 	
 	
 	public Pruu() {
@@ -67,6 +70,11 @@ public class Pruu {
 			Pruu.id++;
 			idPruu = Pruu.id;
 		}
+	}
+	
+	public void incluirComentario(String texto, Usuario usuario) {
+		Comentario comentario = new Comentario(texto, usuario);
+		comentarios.add(comentario);
 	}
 	
 	public boolean validarTexto(String texto) {
@@ -134,6 +142,9 @@ public class Pruu {
 		this.idPruu = idPruu;
 	}
 
+	public ArrayList<Comentario> getComentarios() {
+		return comentarios;
+	}
 
 	@Override
 	public String toString() {
@@ -154,7 +165,13 @@ public class Pruu {
 				"\nPostado em " + dataFormatada + 
 				"\n" + qtdLikes + " curtidas" + 
 				"\nPostado por: " + usuario.getNomePerfil() + 
+				"\n" +
+				"\n" +
+				"---- Comentarios -----" + "\n" +
+				"\n" +
+				comentarios + "\n" +
 				"\n";
+			
 		}
 	}
 
