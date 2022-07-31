@@ -19,7 +19,6 @@ public class Pruu {
 	
 	public Pruu() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -33,37 +32,35 @@ public class Pruu {
 			SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
 			String dataFormatada = formatador.format(dataCriacao);
 			this.dataFormatada = dataFormatada;
-			
-		} else {
-			this.texto = "Pruu digitado fora dos parametros \nrequisitados pelo sistema, pruu descartado.";
-			this.usuario = usuario;
-			this.dataCriacao = new Date();
-			SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
-			String dataFormatada = formatador.format(dataCriacao);
-			this.dataFormatada = dataFormatada;
+			Pruu.id++;
+			idPruu = Pruu.id;
 		}
-				
 	}
+	
 	//metodos
 	public void incluirPruu() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Digite sua mensagem: ");
 		this.texto = input.nextLine();
 		validarTexto(texto);
-		if (textoValido == false) {
-			System.out.println("***       Minimo 1 e maximo 300 caracteres      ***");
-			System.out.println("***Texto fora dos parametros!!! Digite novamente***");
-			
-			
+		if (textoValido) {
+			this.dataCriacao = new Date();
+			SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+			String dataFormatada = formatador.format(dataCriacao);
+			this.dataFormatada = dataFormatada;
+			System.out.println("*****      POSTADO COM SUCESSO      *****");
+			Pruu.id++;
+			idPruu = Pruu.id;
 		} else {
-		this.dataCriacao = new Date();
-		SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
-		String dataFormatada = formatador.format(dataCriacao);
-		this.dataFormatada = dataFormatada;
-		System.out.println("*****      POSTADO COM SUCESSO      *****");
-		
+			do {
+				System.out.println("***       Minimo 1 e maximo 300 caracteres      ***");
+				System.out.println("***Texto fora dos parametros!!! Digite novamente***");
+				System.out.println("Digite sua mensagem: ");
+				texto = input.nextLine();
+				validarTexto(texto);
+			} while (!textoValido);
+			
 		}
-	
 	}
 	
 	public boolean validarTexto(String texto) {
@@ -120,15 +117,36 @@ public class Pruu {
 		this.textoValido = textoValido;
 	}
 
+	public int getIdPruu() {
+		return idPruu;
+	}
+
+
+	public void setIdPruu(int idPruu) {
+		this.idPruu = idPruu;
+	}
+
+
 	@Override
 	public String toString() {
 		if (bloqueado) {
-			return "\nEsse pruu foi bloqueado por descumprir \nas normas do portal!!!" + "\nPostado em " + dataFormatada
-					 + "\nPostado por: " + usuario.getNomePerfil() + "\n";
+			return "\n" +
+					"ID: " + idPruu + 
+					"\n" +
+					"\nEsse pruu foi bloqueado por descumprir \nas normas do portal!!!" + 
+					"\nPostado em " + dataFormatada + 
+					"\nPostado por: " + usuario.getNomePerfil() + 
+					"\n";
 		} else {
 			
-		return "\nPruuuuuu: " + texto + "\nPostado em " + dataFormatada + "\n" + qtdLikes
-				+ " curtidas" + "\nPostado por: " + usuario.getNomePerfil() + "\n";
+		return "\n" +
+				"ID: " + idPruu + 
+				"\n" +
+				"\nPruuuuuu: " + texto + 
+				"\nPostado em " + dataFormatada + 
+				"\n" + qtdLikes + " curtidas" + 
+				"\nPostado por: " + usuario.getNomePerfil() + 
+				"\n";
 		}
 	}
 

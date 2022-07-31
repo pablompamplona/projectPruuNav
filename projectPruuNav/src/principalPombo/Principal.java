@@ -158,14 +158,18 @@ public class Principal {
 						System.out.println("");
 						System.out.println("Selecione qual Pruu deseja bloquear: ");
 						System.out.println("");
-						for (int i = 0; i < pruusFeed.size(); i++) {
-							if(pruusFeed.get(i).isBloqueado() == false) {
-								System.out.println("ID: " + i + pruusFeed.get(i));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.isBloqueado() == false) {
+								System.out.println(pAtual);
 							}
-						}
+						}			
 						System.out.println("Informe o ID do pruu selecionado: ");
 						selecPruuBloq = input.nextInt();
-						admin.bloquearPruu(pruusFeed.get(selecPruuBloq));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getIdPruu() == selecPruuBloq) {
+								admin.bloquearPruu(pAtual);
+							}
+						}
 						System.out.println("*************************************************");
 						System.out.println("           PRUU BLOQUEADO COM SUCESSO            ");
 						System.out.println("*************************************************");
@@ -179,14 +183,18 @@ public class Principal {
 						System.out.println("");
 						System.out.println("Selecione qual Pruu deseja desbloquear: ");
 						System.out.println("");
-						for (int i = 0; i < pruusFeed.size(); i++) {
-							if (pruusFeed.get(i).isBloqueado()) {
-								System.out.println("ID: " + i + pruusFeed.get(i));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.isBloqueado()) {
+								System.out.println(pAtual);
 							}
-						}
+						}			
 						System.out.println("Informe o ID do pruu selecionado: ");
 						selecPruuDesbloq = input.nextInt();
-						admin.desbloquearPruu(pruusFeed.get(selecPruuDesbloq));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getIdPruu() == selecPruuDesbloq) {
+								admin.desbloquearPruu(pAtual);
+							}
+						}
 						System.out.println("*************************************************");
 						System.out.println("         PRUU DESBLOQUEADO COM SUCESSO           ");
 						System.out.println("*************************************************");
@@ -248,10 +256,9 @@ public class Principal {
 						selecUserConsult = input.nextInt();
 						System.out.println("");
 						System.out.println("  ****  PRUUS DO USER " + users.get(selecUserConsult).getNomePerfil() + "   ****    ");
-						for (int i = 0; i < pruusFeed.size(); i++) {
-							Usuario userAtual = pruusFeed.get(i).getUsuario();
-							if (userAtual == users.get(selecUserConsult)) {
-								System.out.println(pruusFeed.get(i));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getUsuario() == users.get(selecUserConsult)) {
+								System.out.println(pAtual);
 							}
 						}
 						break;
@@ -261,9 +268,8 @@ public class Principal {
 						System.out.println("      PRUU SOCIAL NET    --      PRUUS FEED     ");
 						System.out.println("================================================");
 						System.out.println("");
-						for (int i = 0; i < pruusFeed.size(); i++) {
-							System.out.println("ID: " + i);
-							System.out.println(pruusFeed.get(i));
+						for (Pruu pAtual : pruusFeed) {
+							System.out.println(pAtual);
 							System.out.println(" ");
 							System.out.println("************************************************");
 						}
@@ -282,19 +288,23 @@ public class Principal {
 						System.out.println("================================================");
 						System.out.println(" Informe o ID correspondente: ");
 						selecUserCurtindo = input.nextInt();
+						System.out.println();
+						System.out.println("===========    Lista de Pruus   ================");
 						System.out.println("");
-						for (int i = 0; i < pruusFeed.size(); i++) {
-							Usuario userAtual = pruusFeed.get(i).getUsuario();
-							if (userAtual != users.get(selecUserCurtindo)) {
-								System.out.println("ID: " + i);
-								System.out.println(pruusFeed.get(i));
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getUsuario() != users.get(selecUserCurtindo)) {
+								System.out.println(pAtual);
 								System.out.println(" ");
 								System.out.println("************************************************");
 							}
 						}
-						System.out.println("Digite o ID referente ao pruu que voce curtiu: ");
+ 						System.out.println("Digite o ID referente ao pruu que voce curtiu: ");
 						selecPruuCurtido = input.nextInt();
-						pruusFeed.get(selecPruuCurtido).adicionarLike();
+						for (Pruu pAtual : pruusFeed) {
+							if (pAtual.getIdPruu() == selecPruuCurtido) {
+								pAtual.adicionarLike();
+							}
+						}
 						System.out.println("");
 						System.out.println("  ******   PRUU CURTIDO COM SUCESSO   ******   ");
 						break;
